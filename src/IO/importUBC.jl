@@ -136,18 +136,14 @@ function importUBCOcTreeModel(modelfile::AbstractString, mesh::OcTreeMesh, T::Da
   	# convert to numbers
     if ncol == 1
         model = Array{T}(n)
-        for i = 1:n
-            idx = p[i]
-            model[idx] = parse(T,s[i])
-        end
     else
         model = Array{T}(n,ncol)
-        for i = 1:n
-            idx = p[i]
-            d = split(s[i])
-            for j = 1:ncol
-                model[idx,j] = parse(T,d[j])
-            end
+    end
+    for i = 1:n
+        idx = p[i]
+        d = split(s[i])
+        for j = 1:ncol
+            model[idx,j] = parse(T,d[j])
         end
     end
 

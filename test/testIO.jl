@@ -10,7 +10,8 @@ meshIn = importUBCOcTreeMesh("mesh.msh")
 
 for modelOut in [
     rand(1:0.1:100, meshOut.nc),
-    rand(1:0.1:100, meshOut.nc,3)]
+    rand(1:0.1:100, meshOut.nc,3),
+    rand(1:0.1:100, meshOut.nc,6)]
     
     exportUBCOcTreeModel("model.mod", meshOut, modelOut)
     modelIn = importUBCOcTreeModel("model.mod", meshIn)
@@ -19,10 +20,12 @@ for modelOut in [
 end
 
 for modelOut in [
+    rand(Bool, meshOut.nc),
+    rand(Bool, meshOut.nc, 3),
     rand(1:100, meshOut.nc),
-    rand(1:100, meshOut.nc,3),
+    rand(1:100, meshOut.nc, 3),
     rand(1:0.1:100, meshOut.nc),
-    rand(1:0.1:100, meshOut.nc,3)]
+    rand(1:0.1:100, meshOut.nc, 3)]
     
     exportUBCOcTreeModel("model.mod", meshOut, modelOut)
     modelIn = importUBCOcTreeModel("model.mod", meshIn, eltype(modelOut))
