@@ -94,7 +94,7 @@ function exportUBCOcTreeModel{T}(name::AbstractString, mesh::OcTreeMesh, model::
     f = open(name, "w")
     for i = 1:n
         idx = p[i]
-        line = join(ASCIIString[ string(model[idx,j]) for j = 1:ncol ], " ")
+        line = join(String[ string(model[idx,j]) for j = 1:ncol ], " ")
         println(f, line)
     end
     close(f)

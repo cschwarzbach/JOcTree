@@ -1,9 +1,15 @@
+println("Testing: exportUBCOcTreeMesh, importUBCOcTreeMesh, exportUBCOcTreeModel, importUBCOcTreeModel")
+
 @testset "IO" begin
-include("randomOctreeMesh.jl") 
-S = randomOctreeMesh( [256, 256, 256], 5 )
 
+n = [128, 128, 128]
+h = rand(1.:100.0,3)   # cell size
+x0 = rand(1.:100.0,3)
 
-meshOut = getOcTreeMeshFV(S, rand(1.:100.0,3); x0=rand(1.:100.0,3))
+nrand = 5
+S = randomOctreeMesh(n, nrand)
+
+meshOut = getOcTreeMeshFV(S, h; x0=x0)
 exportUBCOcTreeMesh("mesh.msh", meshOut)
 meshIn = importUBCOcTreeMesh("mesh.msh")
 @test meshIn==meshOut
